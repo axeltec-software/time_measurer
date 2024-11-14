@@ -40,4 +40,10 @@ def PrintTimers():
     timers = TimeMeasurer().getTimersList()
     for timer in timers:
         desc, dur = timer
-        print("{}: {} s == {}".format(desc, dur, datetime.timedelta(seconds=dur)))
+        print("{}: {} s == HH:MM:ss: {}".format(desc, dur, datetime.timedelta(seconds=dur)))
+
+def DumpToJson(fileName):
+    timers = TimeMeasurer().getTimersList()
+    import json
+    with open(fileName, 'w') as fp:
+        json.dump(timers, fp)
